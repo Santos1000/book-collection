@@ -2,20 +2,21 @@
 
 .container {
  width: 100%;
- padding-top: 20px;
 }
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 200px 0;
+  padding: 100px 0px;
+  background-image: url(bannerbook.jpg);
   // opacity: 0.5;
-  margin-top: 50px;
   justify-content: center;
 }
 
-.title {
-  color: rgb(25, 60, 112);
-}
+.title h1 {
+    color: rgb(25, 60, 112);
+    text-shadow: 4, 4, 2, black;
+  }
+
 .about {
   p {
     color: rgb(25, 60, 112);
