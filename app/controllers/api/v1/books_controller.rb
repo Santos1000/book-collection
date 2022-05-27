@@ -1,6 +1,6 @@
 class Api::V1::BooksController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, only: [:update]
-  before_action :set_book, only: [:show, :update]
+  acts_as_token_authentication_handler_for User, only: [:update, :destroy]
+  before_action :set_book, only: [:show, :update. :destroy]
 
   def index
     @books = policy_scope(Book)
@@ -17,10 +17,6 @@ class Api::V1::BooksController < Api::V1::BaseController
     end
   end
 
-  def book_params
-    params.require(:book).permit(:name, :author, :category)
-  end
-
   def create
     @book = Book.new(book_params)
     @book.user = current_user
@@ -30,6 +26,12 @@ class Api::V1::BooksController < Api::V1::BaseController
     else
       render_error
     end
+
+  end
+
+  def destroy
+    @restaurant.destroy
+    head :no_content
   end
 
   private
@@ -37,6 +39,10 @@ class Api::V1::BooksController < Api::V1::BaseController
   def set_book
     @book = Book.find(params[:id])
     authorize @book
+  end
+
+  def book_params
+    params.require(:book).permit(:name, :author, :category)
   end
 
   def render_error
