@@ -1,6 +1,6 @@
 class Api::V1::BooksController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, only: [:update, :destroy]
-  before_action :set_book, only: [:show, :update. :destroy]
+  before_action :set_book, only: [:show, :update, :destroy]
 
   def index
     @books = policy_scope(Book)
@@ -30,7 +30,7 @@ class Api::V1::BooksController < Api::V1::BaseController
   end
 
   def destroy
-    @restaurant.destroy
+    @book.destroy
     head :no_content
   end
 
